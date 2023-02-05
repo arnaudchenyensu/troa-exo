@@ -19,12 +19,15 @@ header {
 }
 
 .content {
+  padding: 60px;
+}
+
+.content .beers {
   background-image: url('./assets/beers-bg.svg');
   background-repeat: no-repeat;
   background-position-x: center;
   background-position-y: 280px;
 
-  padding-top: 60px;
   padding-bottom: 340px;
 
   display: flex;
@@ -70,6 +73,92 @@ header {
       width: 240px;
       padding-left: 60px;
       padding-right: 60px;
+    }
+  }
+}
+
+.content .modal {
+  display: flex;
+  flex-direction: row;
+
+  .beer-display {
+    display: flex;
+    justify-content: center;
+    flex: 0 0 70%;
+    align-items: center;
+    justify-items: center;
+
+    .display-title {
+      position: absolute;
+      margin: 0;
+      font-size: 200px;
+      line-height: 77%;
+      text-align: center;
+      text-transform: uppercase;
+      color: rgba(255, 207, 0, 1);
+      max-width: 70%;
+    }
+
+    .beer-img {
+      z-index: 10;
+      width: 212px;
+      align-self: flex-start;
+    }
+  }
+
+  .info {
+    color: black;
+    z-index: 10;
+
+    .beer-title {
+      font-size: 80px;
+      line-height: 85%;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+    }
+
+    .beer-subtitle {
+      font-size: 20px;
+      font-weight: 900;
+      text-transform: uppercase;
+      margin-bottom: 30px;
+    }
+
+    .specifications {
+      margin-bottom: 30px;
+    }
+
+    .specifications-title, .ingredients-title {
+      text-transform: uppercase;
+      color: #CCCCCC;
+      font-weight: 900;
+      font-size: 20px;
+      border-bottom: 1px solid #D8D8D8;
+      margin: 0;
+      padding-bottom: 20px;
+    }
+
+    .attr {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+
+      border-bottom: 1px solid #D8D8D8;
+      padding-top: 18px;
+      padding-bottom: 18px;
+
+      .attr-key {
+        text-transform: uppercase;
+        font-style: normal;
+        font-weight: 900;
+        font-size: 14px;
+        line-height: 17px;
+      }
+
+      .attr-val {
+        text-align: right;
+      }
     }
   }
 }
