@@ -19,15 +19,33 @@ header {
 }
 
 .content {
-  padding: 60px;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.beers-bg-container {
+  position: sticky;
+  top: 0;
+  left: calc(50% - (682px / 2));
+  height: 100vh;
+  z-index: -1;
+
+  .beers-bgs {
+    position: absolute;
+    top: 0;
+    height: 100vh;
+    overflow-y: hidden;
+  }
+
+  img {
+    width: 682px;
+  }
 }
 
 .content .beers {
-  background-image: url('./assets/beers-bg.svg');
-  background-repeat: no-repeat;
-  background-position-x: center;
-  background-position-y: 280px;
-
+  position: relative;
+  padding: 60px;
   padding-bottom: 340px;
 
   display: flex;
@@ -60,6 +78,7 @@ header {
       .beer-subtitle {
         font-size: 20px;
         margin: 0;
+        margin-bottom: 15px;
       }
 
       button.see-more {
@@ -171,4 +190,6 @@ footer {
   padding-top: 30px;
   padding-bottom: 30px;
   border-top: 1px solid rgba(204, 204, 204, 1);
+  background-color: white;
+  position: relative;
 }

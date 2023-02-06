@@ -1,6 +1,8 @@
-import { useState } from 'react'
+import { createRef, useLayoutEffect, useState } from 'react'
 import logo from './assets/logo.svg'
+import beersBg from './assets/beers-bg.svg'
 import beerImage from './assets/beer.png'
+import { gsap, Linear } from 'gsap'
 import './App.scss'
 
 const beers = [
@@ -39,7 +41,36 @@ const beers = [
 ]
 
 function App() {
+  const rootRef = createRef()
   const [beerIndex, setBeerIndex] = useState(-1)
+
+  useLayoutEffect(() => {
+    let ctx = gsap.context(() => {
+      gsap.fromTo(
+        ".beers-bgs img",
+        {
+          y: "-100%"
+        },
+        {
+          y: "0%",
+          repeat: -1,
+          duration: 10,
+          ease: Linear.easeNone,
+          delay: 0
+        }
+      )
+    }, rootRef);
+
+    return () => ctx.revert();
+  }, [])
+
+  const onEnter = ({ currentTarget }: any) => {
+    gsap.to(currentTarget, { scale: 1.2 });
+  };
+
+  const onLeave = ({ currentTarget }: any) => {
+    gsap.to(currentTarget, { scale: 1 });
+  };
 
   const renderBeers = () => {
     return beers.map((beer, i) => {
@@ -51,7 +82,11 @@ function App() {
             <div className='beer-info'>
               <h1 className='beer-name'>{ beer.name }</h1>
               <h4 className='beer-subtitle'>{ beer.subtitle }</h4>
-              <button className='see-more' onClick={() => setBeerIndex(i)}>
+              <button
+                className='see-more'
+                onClick={() => setBeerIndex(i)}
+                onMouseEnter={onEnter}
+                onMouseLeave={onLeave}>
                 See more <span>+</span>
               </button>
             </div>
@@ -65,7 +100,11 @@ function App() {
             <div className='beer-info'>
               <h1 className='beer-name'>{ beer.name }</h1>
               <h4 className='beer-subtitle'>{ beer.subtitle }</h4>
-              <button className='see-more' onClick={() => setBeerIndex(i)}>
+              <button
+                className='see-more'
+                onClick={() => setBeerIndex(i)}
+                onMouseEnter={onEnter}
+                onMouseLeave={onLeave}>
                 See more <span>+</span>
               </button>
             </div>
@@ -143,7 +182,7 @@ function App() {
   }
 
   return (
-    <div className="App">
+    <div className="App" ref={rootRef}>
       <header>
         <img src={logo} className="logo" alt="logo" />
         { closeModalBtn() }
@@ -151,6 +190,12 @@ function App() {
       </header>
 
       <div className="content">
+        <div className="beers-bg-container">
+          <div className="beers-bgs">
+            <img src={beersBg}/>
+            <img src={beersBg}/>
+          </div>
+        </div>
         { beerIndex !== -1
           ? <div className="modal">{ modal() }</div>
           : <div className="beers">{ renderBeers() }</div>
