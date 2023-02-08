@@ -1,13 +1,44 @@
+import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import beerImage from '../assets/beer.png'
+import { gsap } from 'gsap'
 
 interface Props {
   beer: any
+  closing: boolean
+  onClosingDone: () => void
 }
 
-export default function BeerModal({ beer }: Props) {
+export default function BeerModal({ beer, closing, onClosingDone }: Props) {
+  const rootRef = useRef()
+  const [tl, setTl] = useState<gsap.core.Timeline | null>(null)
+
+  useLayoutEffect(() => {
+    const ctx = gsap.context(() => {
+      const timeline = gsap.timeline({ paused: true })
+      timeline.fromTo(
+        rootRef.current,
+        { x: '-100%' },
+        {
+          x: '0%',
+          onReverseComplete: onClosingDone
+        }
+      )
+      timeline.play(0)
+
+      setTl(timeline)
+    }, rootRef)
+
+    return () => ctx.revert()
+  }, [])
+
+  useEffect(() => {
+    if (closing) {
+      tl?.reverse()
+    }
+  }, [closing])
 
   return (
-    <div className='modal'>
+    <div ref={rootRef} className='modal'>
       <div className='beer-display'>
         <h1 className='display-title'>{ beer.name }</h1>
         <img src={beerImage} className='beer-img' alt={`${beer.name} image`} />

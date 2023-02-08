@@ -8,17 +8,24 @@ import BeerModal from './components/BeerModal'
 function App() {
   const [beerIndex, setBeerIndex] = useState(-1)
   const [savedScrollPos, setSavedScrollPos] = useState(0)
+  const [isModalClosing, setIsModalClosing] = useState(false)
 
   useEffect(() => {
     if (beerIndex === -1) {
       // when the modal is closed,
       // we set the scroll position back to where it was
       // before the modal was opened
-      document.documentElement.scrollTop = savedScrollPos
+      document.documentElement.scrollTo({
+        top: savedScrollPos,
+        behavior: 'smooth',
+      })
     } else {
       // when the modal is opened,
       // we scroll to the top
-      document.documentElement.scrollTop = 0
+      document.documentElement.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      })
     }
   }, [beerIndex, savedScrollPos])
 
@@ -27,7 +34,7 @@ function App() {
       return (
         <button
           className='close-modal'
-          onClick={() => setBeerIndex(-1)}>
+          onClick={() => setIsModalClosing(true)}>
           X
         </button>
       )
@@ -44,7 +51,13 @@ function App() {
 
       <div className="content">
         { beerIndex !== -1
-          ? <BeerModal beer={beers[beerIndex]} />
+          ? <BeerModal
+              beer={beers[beerIndex]}
+              closing={isModalClosing}
+              onClosingDone={() => {
+                setBeerIndex(-1)
+                setIsModalClosing(false)
+              }} />
           : <MainContent
               beers={beers}
               onBeerClicked={(i) => {
