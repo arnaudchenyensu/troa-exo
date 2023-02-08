@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import logo from './assets/logo.svg'
 import { beers } from './Data'
 import beerImage from './assets/beer.png'
@@ -7,6 +7,20 @@ import './App.scss'
 
 function App() {
   const [beerIndex, setBeerIndex] = useState(-1)
+  const [savedScrollPos, setSavedScrollPos] = useState(0)
+
+  useEffect(() => {
+    if (beerIndex === -1) {
+      // when the modal is closed,
+      // we set the scroll position back to where it was
+      // before the modal was opened
+      document.documentElement.scrollTop = savedScrollPos
+    } else {
+      // when the modal is opened,
+      // we scroll to the top
+      document.documentElement.scrollTop = 0
+    }
+  }, [beerIndex, savedScrollPos])
 
   const modal = () => {
     const beer = beers[beerIndex]
@@ -68,7 +82,9 @@ function App() {
   const closeModalBtn = () => {
     if (beerIndex !== -1) {
       return (
-        <button className='close-modal' onClick={() => setBeerIndex(-1) }>
+        <button
+          className='close-modal'
+          onClick={() => setBeerIndex(-1)}>
           X
         </button>
       )
@@ -88,7 +104,10 @@ function App() {
           ? <div className="modal">{ modal() }</div>
           : <MainContent
               beers={beers}
-              onBeerClicked={(i) => setBeerIndex(i)} />
+              onBeerClicked={(i) => {
+                setBeerIndex(i)
+                setSavedScrollPos(document.documentElement.scrollTop)
+              }} />
         }
       </div>
 
