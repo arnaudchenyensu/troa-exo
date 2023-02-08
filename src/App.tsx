@@ -15,6 +15,7 @@ function App() {
       // when the modal is closed,
       // we set the scroll position back to where it was
       // before the modal was opened
+      // TODO: use a ref to do ref.current.scrollTo
       document.documentElement.scrollTo({
         top: savedScrollPos,
         behavior: 'smooth',
@@ -41,6 +42,8 @@ function App() {
     }
   }
 
+  const modalOpen = beerIndex !== -1 ? 'modal-open' : ''
+
   return (
     <div className="App">
       <header>
@@ -49,21 +52,23 @@ function App() {
         <span className="beer-emoji">🍺</span>
       </header>
 
-      <div className="content">
+      <div className={`content ${modalOpen}`}>
+        <MainContent
+          beers={beers}
+          onBeerClicked={(i) => {
+            setBeerIndex(i)
+            setSavedScrollPos(document.documentElement.scrollTop)
+          }} />
+
         { beerIndex !== -1
           ? <BeerModal
-              beer={beers[beerIndex]}
-              closing={isModalClosing}
-              onClosingDone={() => {
-                setBeerIndex(-1)
-                setIsModalClosing(false)
-              }} />
-          : <MainContent
-              beers={beers}
-              onBeerClicked={(i) => {
-                setBeerIndex(i)
-                setSavedScrollPos(document.documentElement.scrollTop)
-              }} />
+            beer={beers[beerIndex]}
+            closing={isModalClosing}
+            onClosingDone={() => {
+              setBeerIndex(-1)
+              setIsModalClosing(false)
+            }} />
+          : <></>
         }
       </div>
 

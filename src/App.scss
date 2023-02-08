@@ -43,10 +43,23 @@ header {
   }
 }
 
+.content.modal-open {
+  justify-content: space-between;
+
+  .beers-bg-container {
+    display: none;
+  }
+
+  .beers {
+    width: 60vw;
+    overflow-y: auto;
+    height: 100vh;
+  }
+}
+
 .content .beers {
   position: relative;
   padding: 60px;
-  padding-bottom: 340px;
 
   display: flex;
   flex-wrap: wrap;
@@ -99,7 +112,13 @@ header {
 .content .modal {
   display: flex;
   flex-direction: row;
+  justify-content: flex-end;
   padding: 60px;
+
+  position: absolute;
+  right: 0;
+  background: white;
+  height: 100vh;
 
   .beer-display {
     display: flex;
@@ -127,6 +146,7 @@ header {
   }
 
   .info {
+    width: 30vw;
     color: black;
     z-index: 10;
 
