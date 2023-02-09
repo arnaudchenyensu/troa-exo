@@ -27,15 +27,19 @@ export default function Beer({
       if (side === 'left') {
         // animation for left side beer
         // animate beer's name
-        timeline.to(".beer-name", {
-          scale: 2,
-          color: "rgba(255, 207, 0, 1)",
-          x: "50%",
-          zIndex: 1,
-          position: "relative",
-          textAlign: "center",
-          // y: "-100%",
-        })
+        timeline.fromTo(
+          ".beer-name",
+          { lineHeight: "85%" },
+          {
+            scale: 4,
+            color: "rgba(255, 207, 0, 1)",
+            x: "50%",
+            zIndex: 1,
+            position: "relative",
+            textAlign: "center",
+            lineHeight: "77%",
+          }
+        )
 
         // hide see more and subtitle
         timeline.to(".see-more", { opacity: 0 }, "<")
@@ -50,15 +54,19 @@ export default function Beer({
       } else {
         // animation for right side beer
         // animate beer's name
-        timeline.to(".beer-name", {
-          scale: 2,
-          color: "rgba(255, 207, 0, 1)",
-          x: "-50%",
-          zIndex: 1,
-          position: "relative",
-          textAlign: "center",
-          // y: "-100%",
-        })
+        timeline.fromTo(
+          ".beer-name",
+          { lineHeight: "85%" },
+          {
+            scale: 4,
+            color: "rgba(255, 207, 0, 1)",
+            x: "-50%",
+            zIndex: 1,
+            position: "relative",
+            textAlign: "center",
+            lineHeight: "77%",
+          }
+        )
 
         // hide see more and subtitle
         timeline.to(".see-more", { opacity: 0 }, "<")
