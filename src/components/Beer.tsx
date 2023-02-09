@@ -38,6 +38,7 @@ export default function Beer({
             position: "relative",
             textAlign: "center",
             lineHeight: "77%",
+            width: "200px",
           }
         )
 
@@ -48,8 +49,8 @@ export default function Beer({
         // move beer img
         timeline.to(".beer-img", {
           x: "-50%",
+          y: "-6%",
           zIndex: 2,
-          onStart: () => rootRef.current.scrollIntoView({ behavior: 'smooth' })
         }, "<")
       } else {
         // animation for right side beer
@@ -60,11 +61,12 @@ export default function Beer({
           {
             scale: 4,
             color: "rgba(255, 207, 0, 1)",
-            x: "-50%",
+            x: "-90%",
             zIndex: 1,
             position: "relative",
             textAlign: "center",
             lineHeight: "77%",
+            width: "200px"
           }
         )
 
@@ -74,9 +76,9 @@ export default function Beer({
 
         // move beer img
         timeline.to(".beer-img", {
-          x: "50%",
+          x: "25%",
+          y: "-6%",
           zIndex: 2,
-          onStart: () => rootRef.current.scrollIntoView({ behavior: 'smooth' })
         }, "<")
       }
 

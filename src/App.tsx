@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import logo from './assets/logo.svg'
+import closeBtn from './assets/close-btn.svg'
 import { beers } from './Data'
 import MainContent from './components/MainContent'
 import './App.scss'
@@ -14,9 +15,9 @@ function App() {
     if (showModal) {
       return (
         <button
-          className='close-modal'
+          className='close-btn'
           onClick={() => setIsModalClosing(true)}>
-          X
+          <img src={closeBtn} alt="close button" />
         </button>
       )
     }
@@ -54,8 +55,8 @@ function App() {
       </div>
 
       <footer>
-        <span className="">CHEERS</span>
-        <span className="">PUNK API V2</span>
+        <span className="cheers">CHEERS</span>
+        <span className="api">PUNK API V2</span>
       </footer>
     </div>
   )
