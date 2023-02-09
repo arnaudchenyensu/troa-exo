@@ -8,7 +8,7 @@ interface Props {
 }
 
 export default function BeerModal({ beer, closing, onClosingDone }: Props) {
-  const rootRef = useRef()
+  const rootRef = useRef<HTMLDivElement>(null)
   const [tl, setTl] = useState<gsap.core.Timeline | null>(null)
 
   useLayoutEffect(() => {

@@ -18,7 +18,7 @@ export default function Beer({
   onBeerClicked,
   side,
 }: Props) {
-  const rootRef = useRef()
+  const rootRef = useRef<HTMLDivElement>(null)
   const [tl, setTl] = useState<gsap.core.Timeline | null>(null)
 
   useLayoutEffect(() => {
