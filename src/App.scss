@@ -1,7 +1,29 @@
-#root {
-  .App {
-    min-height: 100vh;
-  }
+@font-face {
+  font-family: Druk;
+  src: url(assets/fonts/Druk_Cond_Super.ttf);
+}
+
+@font-face {
+  font-family: HelveticaNeueCondensed;
+  src: url(assets/fonts/Helvetica_Neue_Condensed_Black.ttf);
+}
+
+@font-face {
+  font-family: HelveticaNeue;
+  src: url(assets/fonts/Helvetica_Neue_Regular.ttf);
+}
+
+@font-face {
+  font-family: HelveticaNeue;
+  src: url(assets/fonts/Helvetica_Neue_Bold.ttf);
+  font-weight: bold;
+}
+
+.App {
+  min-height: 100vh;
+  font-family: HelveticaNeue;
+  font-weight: 400;
+  color: black;
 }
 
 header {
@@ -87,6 +109,7 @@ header {
 
     .beer-info {
       .beer-name {
+        font-family: Druk;
         font-size: 80px;
         margin-bottom: 5px;
       }
@@ -98,6 +121,7 @@ header {
       }
 
       button.see-more {
+        font-weight: bold;
         background-color: rgba(255, 207, 0, 1);
         border-radius: 240px;
         text-transform: uppercase;
