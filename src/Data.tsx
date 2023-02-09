@@ -1,4 +1,9 @@
-export const beers = [
+export interface IBeer {
+  name: string
+  subtitle: string
+}
+
+export const beers: IBeer[] = [
   {
     name: "Arcade Nation",
     subtitle: "Seasonal Black IPA."

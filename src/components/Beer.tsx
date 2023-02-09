@@ -1,9 +1,10 @@
 import beerImage from '../assets/beer.png'
 import { gsap } from 'gsap'
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { IBeer } from '../Data'
 
 interface Props {
-  beer: any
+  beer: IBeer
   className: string
   isModalClosing: boolean
   onBeerClicked: () => void

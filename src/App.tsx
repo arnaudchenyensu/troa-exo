@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import logo from './assets/logo.svg'
 import closeBtn from './assets/close-btn.svg'
-import { beers } from './Data'
+import { beers, IBeer } from './Data'
 import MainContent from './components/MainContent'
 import './App.scss'
 import BeerModal from './components/BeerModal'
@@ -9,7 +9,7 @@ import BeerModal from './components/BeerModal'
 function App() {
   const [isModalClosing, setIsModalClosing] = useState(false)
   const [showModal, setShowModal] = useState(false)
-  const [beer, setBeer] = useState<any>(null)
+  const [beer, setBeer] = useState<IBeer | null>(null)
 
   const closeModalBtn = () => {
     if (showModal) {

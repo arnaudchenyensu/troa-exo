@@ -2,9 +2,10 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import beersBg from '../assets/beers-bg.svg'
 import { gsap, Linear } from 'gsap'
 import Beer from './Beer'
+import { IBeer } from '../Data'
 
 interface Props {
-  beers: any[]
+  beers: IBeer[]
   isModalClosing: boolean
   onBeerClicked: (beer: any) => void
 }
