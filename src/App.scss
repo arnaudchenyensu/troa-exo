@@ -1,3 +1,8 @@
+$sm: 640px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+
 @font-face {
   font-family: Druk;
   src: url(assets/fonts/Druk_Cond_Super.ttf);
@@ -77,24 +82,50 @@ header {
   padding: 60px;
 
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-evenly;
+  justify-content: center;
+  gap: 100px;
+
+  @media (min-width: $md) {
+    gap: 60px;
+  }
+
+  @media (min-width: $xl) {
+    justify-content: space-evenly;
+    flex-direction: row;
+    gap: 0;
+  }
 
   .beer {
     display: flex;
-    // to have 2 columns
-    flex: 0 0 50%;
     align-items: center;
+    justify-content: center;
     text-transform: uppercase;
+    margin: 0;
 
     &.left {
       text-align: right;
-      justify-content: flex-end;
     }
 
     &.right {
       text-align: left;
-      margin-top: 160px;
+    }
+
+    @media (min-width: $xl) {
+      // to have 2 columns
+      flex: 0 0 50%;
+
+      &.left {
+        justify-content: end;
+        text-align: right;
+      }
+
+      &.right {
+        justify-content: start;
+        text-align: left;
+        margin-top: 160px;
+      }
     }
 
     &.hide {
@@ -102,6 +133,8 @@ header {
     }
 
     .beer-info {
+      max-width: 300px;
+
       .beer-name {
         font-family: Druk;
         font-size: 80px;
@@ -110,6 +143,7 @@ header {
 
       .beer-subtitle {
         font-size: 20px;
+        line-height: 25px;
         margin: 0;
         margin-bottom: 15px;
       }
@@ -138,7 +172,7 @@ header {
 
   position: absolute;
   right: 0;
-  background: white;
+  z-index: 10;
   height: 100vh;
 
   .beer-display {
@@ -227,6 +261,7 @@ header {
 
 .content.modal-open {
   justify-content: space-between;
+  margin-bottom: 60px;
 
   .beers-bg-container {
     display: none;
