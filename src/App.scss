@@ -52,7 +52,6 @@ header {
 
   .beers {
     width: 60vw;
-    overflow-y: auto;
     height: 100vh;
   }
 }
@@ -72,14 +71,18 @@ header {
     align-items: center;
     text-transform: uppercase;
 
-    &.even {
+    &.left {
       text-align: right;
       justify-content: flex-end;
     }
 
-    &.odd {
+    &.right {
       text-align: left;
       margin-top: 160px;
+    }
+
+    &.hide {
+      display: none;
     }
 
     .beer-info {
